@@ -1,0 +1,52 @@
+대여일자 대여번호 도서코드 대여도서명 고객번호 대여고객명 반납기한
+select c.rent_ymd, c.rent_no, c.rent_book, b.book_name, c.rent_rent, a.cust_name, c.close_ymd
+from member_tbl_001 a, book_tbl_001 b, rental_tbl_001 c
+where b.book_code = c.rent_book
+   and a.cust_no = c.rent_rent
+order by c.rent_ymd desc;
+
+
+순서 도서코드 도서명 장르 작가 입고일자 도서상태
+select rownum, book_code, book_name, decode(book_type,'A','에세이','B','인문','C','소설'), book_author, to_char(in_date,'yyyy-mm-dd'), decode(stat_fg,'1','대여중','0','대여가능') from book_tbl_001,dual;
+
+
+select 
+book_code, 
+book_name, 
+decode(book_type,'A','에세이','B','인문','C','소설'), 
+book_author, 
+to_char(in_date,'yyyy-mm-dd'), 
+decode(stat_fg,'1  ','대여중','0  ','대여가능') 
+from book_tbl_001 where book_code ='"+request.getParameter("target")+"';
+
+순서 회원번호 회원성명 핸드폰번호 주소 가입일자 상태구분
+select rownum, cust_no, cust_name, phone, address, join_date, decode(stat_fg,'0','정상','1','휴먼','2','탈퇴') from member_tbl_001,dual;
+
+화원번호 가입일자
+
+select cust_no, cust_name, phone, address, to_char(join_date,'yyyy-mm-dd'), oecode(stat_fg,'0','정상','1','휴먼','2','탈퇴') from member_tbl_001;
+
+select cust_no, to_char(join_date,'yyyy-mm-dd') from member_tbl_001;
+
+
+select to_char(sysdate,'yyyy-mm-dd'), max(rent_no)+1 as num1, to_char(sysdate+7,'yyyy-mm-dd') from rental_tbl_001;
+
+대여일자 대여번호 도서코드 대여도서명 고객번호 대여고객명 반납기한
+
+select c.rent_ymd, 
+c.rent_no, 
+c.rent_book, 
+b.book_name, 
+c.rent_rent, 
+a.cust_name, 
+c.close_ymd 
+from member_tbl_001 a, book_tbl_001 b, rental_tbl_001 c 
+where b.book_code = c.rent_book 
+and a.cust_no = c.rent_rent 
+order by c.rent_ymd asc;
+
+insert into rental_tbl_001 values('to_char(sysdate,'yyyymmdd')','4','B0002','100004','"to_char(sysdate+7,'yyyymmdd')"','','');
+
+substr(,2,4)
+
+
